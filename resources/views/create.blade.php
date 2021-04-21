@@ -35,16 +35,28 @@
                 <form method="POST" action="{{route('st')}}">
                     @csrf
                     <div class="input-group">
-                        <input class="input--style-3" type="text" placeholder="Name" name="name">
+                        <input class="input--style-3 {{ $errors->has('name')? 'danger':'' }}" type="text" placeholder="Name" name="name" value="{{old('name')}}">
+                        @if($errors->has('name'))
+                            <p class="help danger">{{$errors->has('name')}}</p>
+                            @endif
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="email" placeholder="Email" name="email">
+                        <input class="input--style-3 @error('email') danger @enderror " type="email" placeholder="Email" name="email" value="{{old('email')}}">
+                        @error('email')
+                        <p class="help danger">{{$errors->has('email')}}</p>
+                        @enderror
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="text" placeholder="Address" name="address">
+                        <input class="input--style-3 @error('address') danger @enderror" type="text" placeholder="Address" name="address" value="{{old('address')}}">
+                        @error('address')
+                        <p class="help danger">{{$errors->has('address')}}</p>
+                        @enderror
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="text" placeholder="phone" name="phone">
+                        <input class="input--style-3{{$errors->has('phone')?'danger':''}}" type="text" placeholder="phone" name="phone" value="{{old('phone')}}">
+                        @if($errors->has('phone'))
+                            <p class="help danger">{{$errors->has('phone')}}</p>
+                            @endif
                     </div>
                     <div class="p-t-10">
                         <button class="btn btn--pill btn--green" type="submit">Submit</button>

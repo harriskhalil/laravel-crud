@@ -36,16 +36,28 @@
                     @csrf
                     @method('PUT')
                     <div class="input-group">
-                        <input class="input--style-3" type="text" value="{{$user->name}}" placeholder="Name" name="name">
+                        <input class="input--style-3 {{ $errors->has('name') ? 'is-danger':''  }}" type="text" value="{{$user->name}} " placeholder="Name" name="name" required>
+                        @if($errors->has('name'))
+                        <p class="help danger">{{ $errors->first('name') }}</p>
+                        @endif
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="email" value="{{$user->email}}" placeholder="Email" name="email">
+                        <input class="input--style-3 @error('email') is-danger @enderror" type="email" value="{{$user->email}}" placeholder="Email" name="email" required>
+                        @error('email')
+                        <p class="help danger">{{ $errors->first('name') }}</p>
+                        @enderror
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="text" value="{{$user->address}}" placeholder="Address" name="address">
+                        <input class="input--style-3 @error('address') is-danger @enderror" type="text" value="{{$user->address}}" placeholder="Address" name="address"required>
+                        @error('address')
+                        <p class="help danger">{{ $errors->first('address') }}</p>
+                        @enderror
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="text" value="{{$user->phone}}" placeholder="phone" name="phone">
+                        <input class="input--style-3 @error('phone') is-danger @enderror " type="text" value="{{$user->phone}}" placeholder="phone" name="phone"required>
+                        @error('phone')
+                        <p class="help danger">{{ $errors->first('phone') }}</p>
+                        @enderror
                     </div>
                     <div class="p-t-10">
                         <button class="btn btn--pill btn--green" type="submit">Submit</button>

@@ -24,6 +24,12 @@ class UserController extends Controller
         return view('create');
     }
     function store(){
+        \request()->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'address'=>'required',
+            'phone'=>'required'
+        ]);
         $user = new User();
         $user->name= \request('name');
         $user->email= \request('email');
@@ -40,6 +46,12 @@ class UserController extends Controller
         ]);
     }
     function update($id){
+        \request()->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'address'=>'required',
+            'phone'=>'required'
+        ]);
         $user = User::findOrFail($id);
         $user->name= \request('name');
         $user->email= \request('email');
