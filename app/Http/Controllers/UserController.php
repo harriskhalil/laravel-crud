@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     function index (){
-        $user= User::paginate(10);
+        $user= User::paginate(5);
         return view('crud',[
             'users'=>$user
         ]);
